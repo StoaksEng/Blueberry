@@ -8,7 +8,7 @@ win = False
 
 
 for i in range(0, 4):
-	seq.[i] = randint(1, 6)
+	seq[i] = randint(1, 6)
 
 for i in range(1, 13):
 
@@ -40,4 +40,5 @@ for i in range(1, 13):
 if win:
 	print(f'You\'ve Won! It took you {i} tries.')
 else:
+
 	print(f'You\'ve Lost! The correct sequence is {seq}')
