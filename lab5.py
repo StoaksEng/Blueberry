@@ -19,7 +19,7 @@ but = 12
 def singen():
 	mat = [None] * len(pins)
 	t = time.time()
-	
+
 	for pin in pins:
 		mat[pin-2] = round(math.sin(2*math.pi*fbase*t - (pin-2)*math.pi/11) ** 2, 2)*100
 	return mat
@@ -43,10 +43,11 @@ for pwm in pwms:
 try:
 	while True:
 		Bmat=singen()
-
+		print(Bmat)
+		
 		for pin in pins:
 			pwms[pin-2].ChangeDutyCycle(Bmat[pin-2])
-			print(B)
+
 		time.sleep(2)
 		print('\n')
 
@@ -59,5 +60,4 @@ finally:
 	print("done")
 
 GPIO.cleanup()
-
 
