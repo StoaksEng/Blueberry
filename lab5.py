@@ -24,6 +24,7 @@ GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def rev():
 	direc *= -1
+	print("rev")
 
 #event detector to switch direction of sin wave
 GPIO.add_event_detect(but, GPIO.RISING, callback=rev, bouncetime=100)
