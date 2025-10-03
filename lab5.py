@@ -13,12 +13,13 @@ GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 for i in range(9):
 	GPIO.setup(ports[i], GPIO.OUT, initial=0)
-	# pwms.append(GPIO.PWM(ports[i], fbase))
+	pwms.append(GPIO.PWM(ports[i], fbase))
 	# pwms[i].start(10*i)
 
 try:
-	print("ping")
-	sleep(1)
+	while 1:
+		print("ping")
+		sleep(1)
 except KeyboardInterrupt:
 	print('\nExiting')
 except Exception as e:
