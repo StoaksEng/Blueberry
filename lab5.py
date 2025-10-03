@@ -13,7 +13,7 @@ fbase = 500
 GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-for pin in pins
+for pin in pins:
 	GPIO.setup(pin, GPIO.OUT)
 	
 pwms = [GPIO.PWM(pin, fbase) for pin in pins]
@@ -37,4 +37,5 @@ finally:
 		pwm.stop()
 	GPIO.cleanup()
 	print("done")
+
 
