@@ -48,7 +48,7 @@ try:
 		for pin in pins:
 			pwms[pin-2].ChangeDutyCycle(Bmat[pin-2])
 
-		sleep(0.5)
+		time.sleep(0.5)
 		print('\n')
 
 except KeyboardInterrupt:
@@ -60,4 +60,5 @@ finally:
 	print("done")
 
 GPIO.cleanup()
+
 
