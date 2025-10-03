@@ -2,9 +2,10 @@ import RPi.GPIO as GPIO
 from time import sleep
 from time import time
 
+GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.cleanup()
+
 
 pins = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 but = 12
@@ -22,7 +23,7 @@ pwms = [GPIO.PWM(pin, fbase) for pin in pins]
 i=0;
 
 for pwm in pwms:
-	pwm.start(i*pi/11)
+	pwm.start(50)
 	i+=1
 
 try:
@@ -37,5 +38,4 @@ finally:
 		pwm.stop()
 	GPIO.cleanup()
 	print("done")
-
 
