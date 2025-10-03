@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 from time import time
+import math
 
 GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
@@ -23,7 +24,7 @@ pwms = [GPIO.PWM(pin, fbase) for pin in pins]
 i=0;
 
 for pwm in pwms:
-	pwm.start(50)
+	pwm.start(i*math.pi/11)
 	i+=1
 
 try:
@@ -31,8 +32,6 @@ try:
 	sleep(10)
 except KeyboardInterrupt:
 	print('\nExiting')
-except Exception as e:
-	print('\ne')
 finally:
 	for pwm in pwms:
 		pwm.stop()
