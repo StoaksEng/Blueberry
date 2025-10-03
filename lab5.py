@@ -14,7 +14,7 @@ i=0
 
 for p in ports:
 	GPIO.setup(p, GPIO.OUT, initial=0)
-	pwns.append(GPIO.PWM(p, fbase))
+	pwms.append(GPIO.PWM(p, fbase))
 	i+=1;
 	pwms[i].start(10*i)
 
@@ -27,5 +27,6 @@ except Exception as e:
 	print('\ne')
 
 GPIO.cleanup()
+
 
 
