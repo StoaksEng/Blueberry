@@ -16,7 +16,7 @@ but = 12
 
 
 # generates sin wave based on pin (phase shift) and time
-def singen:
+def singen():
 	mat = [None] * len(pins)
 	t = time.time()
 	
@@ -59,4 +59,5 @@ finally:
 	print("done")
 
 GPIO.cleanup()
+
 
