@@ -20,6 +20,8 @@ direc = 1
 
 
 
+GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
 def rev():
 	direc *= -1
 
@@ -37,7 +39,7 @@ def singen():
 
 
 
-GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
 
 
 for pin in pins:
