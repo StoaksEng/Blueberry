@@ -11,7 +11,7 @@ fbase = 500
 GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-for i in range(10):
+for i in range(9):
 	GPIO.setup(ports[i], GPIO.OUT, initial=0)
 	pwms.append(GPIO.PWM(ports[i], fbase))
 
