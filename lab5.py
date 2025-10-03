@@ -15,6 +15,14 @@ fbase=500
 
 but = 12
 
+direc = 1
+
+#event detector to switch direction of sin wave
+GPIO.add_event_detect(but, gpio.RISING, callback=rev, bouncetime=100)
+
+
+def rev():
+	direc *= -1
 
 # generates sin wave based on pin (phase shift) and time
 def singen():
@@ -22,7 +30,7 @@ def singen():
 	t = time.time()
 
 	for pin in pins:
-		mat[pin-2] = round(math.sin(2*math.pi*f*t - (pin-2)*math.pi/11) ** 2, 2)*100
+		mat[pin-2] = round(math.sin(2*math.pi*f*t - direc * (pin-2)*math.pi/11) ** 2, 2)*100
 	return mat
 
 
