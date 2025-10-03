@@ -18,7 +18,7 @@ but = 12
 direc = 1
 
 #event detector to switch direction of sin wave
-GPIO.add_event_detect(but, gpio.RISING, callback=rev, bouncetime=100)
+GPIO.add_event_detect(but, GPIO.RISING, callback=rev, bouncetime=100)
 
 
 def rev():
