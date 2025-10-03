@@ -17,7 +17,7 @@ but = 12
 
 # generates sin wave based on pin (phase shift) and time
 def singen (pin):
-	return round(math.sin(2*math.pi*fbase*time.time() - (pin-2)*math.pi/11) ** 2, 2);
+	return round(math.sin(2*math.pi*fbase*time.time() - (pin-2)*math.pi/11) ** 2, 2)*100;
 
 
 
@@ -41,6 +41,7 @@ try:
 			B=singen(pin)
 			pwms[pin-2].ChangeDutyCycle(B)
 			print(B)
+		time.sleep(2)
 
 except KeyboardInterrupt:
 	print('\nExiting')
