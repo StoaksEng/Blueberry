@@ -22,7 +22,7 @@ direc = 1
 
 GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-def rev():
+def rev(pin):
 	direc *= -1
 	print("rev")
 
