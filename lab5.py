@@ -10,12 +10,11 @@ fbase = 500
 
 GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-i=0
 
-for p in ports:
-	GPIO.setup(p, GPIO.OUT, initial=0)
-	pwms.append(GPIO.PWM(p, fbase))
-	i+=1;
+for i in range(10):
+	GPIO.setup(ports[i], GPIO.OUT, initial=0)
+	pwms.append(GPIO.PWM(ports[i], fbase))
+
 	pwms[i].start(10*i)
 
 try:
@@ -27,6 +26,4 @@ except Exception as e:
 	print('\ne')
 
 GPIO.cleanup()
-
-
 
