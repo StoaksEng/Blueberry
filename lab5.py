@@ -13,6 +13,9 @@ GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 for i in range(len(ports)):
 	GPIO.setup(ports[i], GPIO.OUT, initial=0)
+	print(i)
+
+for i in range(len(ports)):
 	pwms[i] = GPIO.PWM(ports[i], fbase)
 	# pwms[i].start(10*i)
 
