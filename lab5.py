@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
-from time import sleep
-from time import time
 import math
+import time 
+
 
 GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
@@ -9,8 +9,17 @@ GPIO.setwarnings(False)
 
 
 pins = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+vals = [None] * len(pins)
+fbase=0.2
+
 but = 12
-fbase = 500
+
+
+# generates sin wave based on pin (phase shift) and time
+def singen (pin):
+	return round(math.sin(2*math.pi*fbase*time.time() - (pin-2)*math.pi/11) ** 2, 2);
+
+
 
 GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
@@ -21,15 +30,18 @@ for pin in pins:
 pwms = [GPIO.PWM(pin, fbase) for pin in pins]
 
 
-i=0;
-
+i=0
 for pwm in pwms:
-	pwm.start(i*math.pi/11)
+	pwm.start(0)
 	i+=1
 
 try:
-	print("PWM objects initialized. Running for 10 seconds...")
-	sleep(10)
+	for pin in pins:
+		B=singen(pin)
+		pwms[pin-2].ChangeDutyCycle(B)
+		print(B)
+	time.sleep(10)
+
 except KeyboardInterrupt:
 	print('\nExiting')
 finally:
@@ -37,4 +49,6 @@ finally:
 		pwm.stop()
 	GPIO.cleanup()
 	print("done")
+
+GPIO.cleanup()
 
