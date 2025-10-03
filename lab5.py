@@ -5,13 +5,13 @@ GPIO.setmode(GPIO.BCM)
 
 ports = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 but = 12
-pwms = [None] * size(ports)
+pwms = [None] * len(ports)
 fbase = 500
 
 GPIO.setup(but, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-for i in range(size(ports)):
+for i in range(len(ports)):
 	GPIO.setup(ports[i], GPIO.OUT, initial=0)
 	pwms[i] = GPIO.PWM(ports[i], fbase)
 	# pwms[i].start(10*i)
