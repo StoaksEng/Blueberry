@@ -44,11 +44,11 @@ try:
 	while True:
 		Bmat=singen()
 		print(Bmat)
-		
+
 		for pin in pins:
 			pwms[pin-2].ChangeDutyCycle(Bmat[pin-2])
 
-		time.sleep(2)
+
 		print('\n')
 
 except KeyboardInterrupt:
