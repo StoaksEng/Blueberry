@@ -10,7 +10,8 @@ GPIO.setwarnings(False)
 
 pins = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 vals = [None] * len(pins)
-fbase=0.2
+f=0.2
+fbase=500
 
 but = 12
 
@@ -21,7 +22,7 @@ def singen():
 	t = time.time()
 
 	for pin in pins:
-		mat[pin-2] = round(math.sin(2*math.pi*fbase*t - (pin-2)*math.pi/11) ** 2, 2)*100
+		mat[pin-2] = round(math.sin(2*math.pi*f*t - (pin-2)*math.pi/11) ** 2, 2)*100
 	return mat
 
 
@@ -60,5 +61,4 @@ finally:
 	print("done")
 
 GPIO.cleanup()
-
 
