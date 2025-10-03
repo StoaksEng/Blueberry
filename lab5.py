@@ -15,6 +15,7 @@ fbase=500
 
 but = 12
 
+global direc
 direc = 1
 
 
