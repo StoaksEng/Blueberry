@@ -36,11 +36,11 @@ for pwm in pwms:
 	i+=1
 
 try:
-	for pin in pins:
-		B=singen(pin)
-		pwms[pin-2].ChangeDutyCycle(B)
-		print(B)
-	time.sleep(10)
+	while True:
+		for pin in pins:
+			B=singen(pin)
+			pwms[pin-2].ChangeDutyCycle(B)
+			print(B)
 
 except KeyboardInterrupt:
 	print('\nExiting')
