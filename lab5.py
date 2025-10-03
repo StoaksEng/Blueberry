@@ -1,6 +1,6 @@
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
-# GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 
 ports = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -27,4 +27,5 @@ except Exception as e:
 	print('\ne')
 
 GPIO.cleanup()
+
 
