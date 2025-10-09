@@ -9,12 +9,12 @@ class Shifter:
         self.clockPin = clockPin
         self.latchPin = latchPin
 
-    def _ping(p)
+    def _ping(p):
         GPIO.output(p,1)
         time.sleep(0)
         GPIO.output(p,0)
 
-    def shiftByte(b)
+    def shiftByte(b):
 
         if b == 1 && b < 8:
             b+=1
