@@ -15,6 +15,7 @@ class Shifter:
         GPIO.output(p,0)
 
     def shiftByte(b):
+        print("test")
         print(format(b, '08b'))
         for i in range(8):
             GPIO.output(dataPin, b & (1<<i))
