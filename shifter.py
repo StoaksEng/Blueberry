@@ -18,6 +18,6 @@ class Shifter:
         print("recieving:")
         print(format(b, '08b'))
         for i in range(8):
-            GPIO.output(self.dataPin, b & (1<<i))
+            GPIO.output(self.serialPin, b & (1<<i))
             ping(self.clockPin) # add bit to register
         ping(self.latchPin) # send register to output
