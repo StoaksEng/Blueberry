@@ -20,22 +20,19 @@ led = 0b00010000
 def randomStep(leds):
 
 	move = random.choice([-1, 1])
-	# Move left
+	# Move left (if possible)
 	if move == -1 and leds < 0b10000000:
 		leds <<= 1
-	# Move right
+	# Move right (if possible)
 	elif move == 1 and leds > 0b00000001:
 		leds >>= 1
-		# If at edge, reverse direction
+
 	return leds
 
 try:
 	while True:
 		led = randomStep(led)
-		print("sending:")
-		print(format(led, '08b'))
 		shift.shiftByte(led)
-		print("test2")
 		time.sleep(0.05)
 except Exception as e:
     print("Error:", e)
