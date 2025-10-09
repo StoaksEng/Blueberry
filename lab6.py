@@ -28,10 +28,11 @@ def randomStep():
 		# If at edge, reverse direction
 	else:
 		leds = leds  # stay put or could reverse
+	return leds
 
 try:
-	while 1:
-		shift.ShiftByte(leds)
+	while True:
+		shift.ShiftByte(randomStep())
 		sleep(0.05)
 		print("test")
 except:
