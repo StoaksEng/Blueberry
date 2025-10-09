@@ -15,13 +15,13 @@ pattern = 0b01100110 # pattern to display
 
 shift = shifter.Shifter(dataPin, clockPin, latchPin)
 
-leds = 0b00010000 
+led = 0b00010000 
 
-def randomStep():
+def randomStep(led):
 	move = random.choice([-1, 1])
 	# Move left
 	if move == -1 and leds < 0b10000000:
-		leds <<= 1
+		globalleds <<= 1
 	# Move right
 	elif move == 1 and leds > 0b00000001:
 		leds >>= 1
@@ -31,12 +31,12 @@ def randomStep():
 	sleep(1)
 	print(format(leds, '08b'))
 	sleep(1)
+	return leds
 
 try:
 	while True:
 		print("test1")
-		randomStep();
-		shift.ShiftByte(leds)
+		shift.ShiftByte(randomStep(led))
 		print("test2")
 		sleep(0.05)
 		print("test3")
