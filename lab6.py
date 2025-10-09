@@ -28,12 +28,16 @@ def randomStep():
 		# If at edge, reverse direction
 	else:
 		leds = leds  # stay put or could reverse
+	print(format(leds, '08b'))
 	return leds
 
 try:
 	while True:
+		print("test1")
 		shift.ShiftByte(randomStep())
+		print("test2")
 		sleep(0.05)
-		print("test")
+		print("test3")
+
 except:
 	GPIO.cleanup()
