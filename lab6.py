@@ -28,13 +28,14 @@ def randomStep():
 		# If at edge, reverse direction
 	else:
 		leds = leds  # stay put or could reverse
+	sleep(1)
 	print(format(leds, '08b'))
-	return leds
+	sleep(1)
 
 try:
 	while True:
 		print("test1")
-		shift.ShiftByte(randomStep())
+		shift.ShiftByte(leds)
 		print("test2")
 		sleep(0.05)
 		print("test3")
