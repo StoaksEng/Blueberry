@@ -9,15 +9,15 @@ class Shifter:
         self.clockPin = clockPin
         self.latchPin = latchPin
 
-    def _ping(p):
+    def _ping(self, p):
         GPIO.output(p,1)
         time.sleep(0)
         GPIO.output(p,0)
 
-    def shiftByte(b):
+    def shiftByte(self, b):
         print("recieving:")
         print(format(b, '08b'))
         for i in range(8):
-            GPIO.output(dataPin, b & (1<<i))
-            ping(clockPin) # add bit to register
-        ping(latchPin) # send register to output
+            GPIO.output(self.dataPin, b & (1<<i))
+            ping(self.clockPin) # add bit to register
+        ping(self.latchPin) # send register to output
