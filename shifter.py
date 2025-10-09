@@ -15,6 +15,7 @@ class Shifter:
         GPIO.output(p,0)
 
     def shiftByte(b):
+        print(format(b, '08b'))
         for i in range(8):
             GPIO.output(dataPin, b & (1<<i))
             self.ping(clockPin) # add bit to register
