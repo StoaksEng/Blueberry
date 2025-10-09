@@ -16,9 +16,9 @@ class Shifter:
 
     def shiftByte(b):
 
-        if b == 1 && b < 8:
+        if b == 1 and b < 8:
             b+=1
-        else if b == 2 && b > 0
+        else if b == 2 and b > 0
             b-=1
 
         for i in range(8):
