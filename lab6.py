@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import time
 import shifter
-import random
 
 GPIO.setmode(GPIO.BCM)
 
@@ -15,27 +14,10 @@ pattern = 0b01100110 # pattern to display
 
 shift = shifter.Shifter(dataPin, clockPin, latchPin)
 
-led = 0b00010000 
-
-def randomStep(leds):
-
-	move = random.choice([-1, 1])
-	# Move left
-	if move == -1 and leds < 0b10000000:
-		leds <<= 1
-	# Move right
-	elif move == 1 and leds > 0b00000001:
-		leds >>= 1
-		# If at edge, reverse direction
-	return leds
-
 try:
-	while True:
-		led = randomStep(led)
-		print("test1")
-		shift.ShiftByte(led)
-		print("test2")
-		sleep(0.05)
-
+	while 1:
+		for i in range(2**8):
+			shift.shiftByte(i)
+			time.sleep(0.5)
 except:
 	GPIO.cleanup()
