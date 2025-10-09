@@ -27,10 +27,6 @@ def randomStep(leds):
 	elif move == 1 and leds > 0b00000001:
 		leds >>= 1
 		# If at edge, reverse direction
-
-	print("test4")
-	print(format(leds, '08b'))
-
 	return leds
 
 try:
@@ -40,7 +36,6 @@ try:
 		shift.ShiftByte(led)
 		print("test2")
 		sleep(0.05)
-		print("test3")
 
 except:
 	GPIO.cleanup()
