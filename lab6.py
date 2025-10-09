@@ -32,10 +32,10 @@ def randomStep(leds):
 try:
 	while True:
 		led = randomStep(led)
-		print("test1")
+		print("sending:")
+		print(format(led, '08b'))
 		shift.ShiftByte(led)
 		print("test2")
 		sleep(0.05)
-
 except:
 	GPIO.cleanup()
