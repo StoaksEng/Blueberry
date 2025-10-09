@@ -17,12 +17,12 @@ shift = shifter.Shifter(dataPin, clockPin, latchPin)
 
 led = 0b00010000 
 
-def randomStep(led):
+def randomStep(leds):
 	print(format(leds, '08b'))
 	move = random.choice([-1, 1])
 	# Move left
 	if move == -1 and leds < 0b10000000:
-		globalleds <<= 1
+		leds <<= 1
 	# Move right
 	elif move == 1 and leds > 0b00000001:
 		leds >>= 1
