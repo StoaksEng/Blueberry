@@ -35,6 +35,7 @@ def randomStep():
 try:
 	while True:
 		print("test1")
+		randomStep();
 		shift.ShiftByte(leds)
 		print("test2")
 		sleep(0.05)
