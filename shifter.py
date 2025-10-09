@@ -19,5 +19,5 @@ class Shifter:
         print(format(b, '08b'))
         for i in range(8):
             GPIO.output(dataPin, b & (1<<i))
-            self.ping(clockPin) # add bit to register
-        self.ping(latchPin) # send register to output
+            ping(clockPin) # add bit to register
+        ping(latchPin) # send register to output
