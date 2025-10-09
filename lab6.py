@@ -37,5 +37,6 @@ try:
 		shift.shiftByte(led)
 		print("test2")
 		time.sleep(0.05)
-except:
-	GPIO.cleanup()
+except Exception as e:
+    print("Error:", e)
+    GPIO.cleanup()
