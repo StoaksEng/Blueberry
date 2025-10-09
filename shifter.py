@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-int byte
+int byte = 1
 
 class Shifter:
     def __init__(self, serialPin, clockPin, latchPin):
