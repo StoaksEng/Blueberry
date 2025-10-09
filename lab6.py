@@ -34,8 +34,8 @@ try:
 		led = randomStep(led)
 		print("sending:")
 		print(format(led, '08b'))
-		shift.ShiftByte(led)
+		shift.shiftByte(led)
 		print("test2")
-		sleep(0.05)
+		time.sleep(0.05)
 except:
 	GPIO.cleanup()
