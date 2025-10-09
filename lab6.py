@@ -20,12 +20,15 @@ led = 0b00010000
 def randomStep(leds):
 	print(format(leds, '08b'))
 	move = random.choice([-1, 1])
+	print("test1")
 	# Move left
 	if move == -1 and leds < 0b10000000:
 		leds <<= 1
+		print("test2")
 	# Move right
 	elif move == 1 and leds > 0b00000001:
 		leds >>= 1
+		print("test3")
 		# If at edge, reverse direction
 	else:
 		leds = leds  # stay put or could reverse
