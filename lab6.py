@@ -19,9 +19,10 @@ dir = 1
 
 try:
 	while 1:
+		print("test")
 		dir = random.randint(1, 2)
 		shift.ShiftByte(dir)
 		sleep(0.05)
-		print("test")
+
 except:
 	GPIO.cleanup()
