@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import shifter
+import random
 
 GPIO.setmode(GPIO.BCM)
 
@@ -14,10 +15,14 @@ pattern = 0b01100110 # pattern to display
 
 shift = shifter.Shifter(dataPin, clockPin, latchPin)
 
+dir = 1
+
 try:
 	while 1:
-		for i in range(2**8):
-			shift.shiftByte(i)
-			time.sleep(0.5)
+		dir = random.randint(1, 2)
+
+		shift.ShiftByte(dir)
+
+		sleep(0.05)
 except:
 	GPIO.cleanup()
