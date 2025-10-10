@@ -48,7 +48,7 @@ class Bug:
 			if self.x < 7 or self.isWrapOn:
 				self.x += 1
 
-		led = 2 ** self.x
+		led = int(2 ** self.x)
 		self.shifter.shiftByte(led)
 
 	def start(self):
