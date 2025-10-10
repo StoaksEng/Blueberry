@@ -61,16 +61,15 @@ class Bug:
 		self.shifter.shiftByte(led)
 
 	def start(self):
-	    if not self.running:
-	        self.running = True
-	        self._thread = threading.Thread(target=self._run)
-	        self._thread.start()
-	        print("Bug started.")
+		if not self.running:
+			self.running = True
+			self._thread = threading.Thread(target=self._run)
+			self._thread.start()
+			print("Bug started.")
 
 	def stop(self):
-	    """Stop changing LED position and turn off LEDs."""
-	    if self.running:
-	        self.running = False
-	        self._thread.join()      # wait for thread to finish
-	        self.shifter.shiftByte(0)  # turn off all LEDs
-	        print("Bug stopped and LEDs off.")
+		if self.running:
+			self.running = False
+			self._thread.join()      # wait for thread to finish
+			self.shifter.shiftByte(0)  # turn off all LEDs
+			print("Bug stopped and LEDs off.")
