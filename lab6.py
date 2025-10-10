@@ -40,13 +40,17 @@ class Bug:
 
 		# Move left (if possible)
 		if move == -1:
-			if self.x > 0 or self.isWrapOn:
+			if self.x > 0:
 				self.x -= 1
+			elif self.isWrapOn:
+				self.x = 8
 
 		# Move right (if possible)
 		elif move == 1:
-			if self.x < 7 or self.isWrapOn:
+			if self.x < 7:
 				self.x += 1
+			elif self.isWrapOn:
+				self.x = 0
 
 		led = int(2 ** self.x)
 		self.shifter.shiftByte(led)
