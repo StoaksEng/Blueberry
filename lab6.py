@@ -78,14 +78,16 @@ if __name__ == "__main__":
 			bug.start()   # starts blinking LEDs
 			time.sleep(10)
 			bug.stop()
-			print("wraparound fast bug")
+			print("Wraparound fast bug:")
 			bug2.start()
 			time.sleep(10)
 			bug2.stop()
-
+			print("Bug break.")
 			time.sleep(10)
 
-	except Exception as e:
-		print("Error:", e)
+	except KeyboardInterrupt:
+		print("Stopping Program")
 		bug.stop()
+		bug2.stop()
 		GPIO.cleanup()
+		print("Program Stopped Safely")
