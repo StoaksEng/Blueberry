@@ -18,21 +18,19 @@ shift = shifter.Shifter(dataPin, clockPin, latchPin)
 led = 0b00010000 
 
 def randomStep(leds):
+	try:
+		bug = Bug()
+		bug.start()
+		
+		while True:
+			bug.start()   # starts blinking LEDs
+			time.sleep(10)
+			bug.stop()  
+			time.sleep(10)
 
-
-try:
-	bug = Bug()
-	bug.start() 
-
-	while True:
-		bug.start()   # starts blinking LEDs
-		time.sleep(10)
-		bug.stop()  
-		time.sleep(10)
-
-except Exception as e:
-    print("Error:", e)
-    GPIO.cleanup()
+	except Exception as e:
+	    print("Error:", e)
+	    GPIO.cleanup()
 
 class Bug:
     def __init__(self, timeStep=0.1, x=3, isWrapOn=False):
