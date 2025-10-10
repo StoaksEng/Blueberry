@@ -9,10 +9,10 @@ GPIO.setmode(GPIO.BCM)
 dataPin, latchPin, clockPin = 23, 24, 25
 
 GPIO.setup(dataPin, GPIO.OUT)
-GPIO.setup(latchPin, GPIO.OUT, initial=0)  # start latch & clock low
+GPIO.setup(latchPin, GPIO.OUT, initial=0)
 GPIO.setup(clockPin, GPIO.OUT, initial=0)
 
-pattern = 0b01100110  # pattern to display
+pattern = 0b01100110
 
 shift = shifter.Shifter(dataPin, clockPin, latchPin)
 
@@ -22,7 +22,6 @@ led = 0b00010000
 
 class Bug:
 	def __init__(self, timeStep=0.1, x=3, isWrapOn=False):
-		# composition: Bug "has a" Shifter
 		self.shifter = shifter.Shifter(dataPin, clockPin, latchPin)
 		self.timeStep = timeStep
 		self.x = x
@@ -38,14 +37,12 @@ class Bug:
 	def randomStep(self):
 		move = random.choice([-1, 1])
 
-		# Move left (if possible)
 		if move == -1:
 			if self.x > 0:
 				self.x -= 1
 			elif self.isWrapOn:
 				self.x = 8
 
-		# Move right (if possible)
 		elif move == 1:
 			if self.x < 7:
 				self.x += 1
@@ -65,8 +62,8 @@ class Bug:
 	def stop(self):
 		if self.running:
 			self.running = False
-			self._thread.join()       # wait for thread to finish
-			self.shifter.shiftByte(0)  # turn off all LEDs
+			self._thread.join()
+			self.shifter.shiftByte(0)
 			print("Bug squahsed.")
 
 
@@ -75,15 +72,15 @@ if __name__ == "__main__":
 		bug = Bug()
 		bug2=Bug(0.05, 1, True)
 		while True:
-			bug.start()   # starts blinking LEDs
+			bug.start()
 			time.sleep(10)
 			bug.stop()
 			print("Wraparound fast bug:")
 			bug2.start()
 			time.sleep(10)
 			bug2.stop()
-			print("Bug break.")
-			time.sleep(10)
+			print("Bug break time.")
+			time.sleep(5)
 
 	except KeyboardInterrupt:
 		print("Stopping Program")
