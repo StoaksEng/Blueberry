@@ -40,10 +40,10 @@ class Bug:
         self.x=x
         self.isWrapOn=isWrapOn
 
-	def _run(self):
+    def _run(self):
     	while self.running:
-	    	randomStep()
-	    	time.sleep(self.timeStep)
+    		randomStep()
+    		time.sleep(self.timeStep)
 
 	def randomStep():
 		move = random.choice([-1, 1])
