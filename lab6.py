@@ -76,7 +76,7 @@ if __name__ == "__main__":
 			bug.stop()
 			print("wraparound fast bug")
 			bug2.start()
-			sleep(10)
+			time.sleep(10)
 			bug2.stop()
 
 			time.sleep(10)
