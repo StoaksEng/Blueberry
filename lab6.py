@@ -69,12 +69,16 @@ class Bug:
 if __name__ == "__main__":
 	try:
 		bug = Bug()
-		bug.start()
-
+		bug2=Bug(0.05, 1, True)
 		while True:
 			bug.start()   # starts blinking LEDs
 			time.sleep(10)
 			bug.stop()
+			print("wraparound fast bug")
+			bug2.start()
+			sleep(10)
+			bug2.stop()
+
 			time.sleep(10)
 
 	except Exception as e:
