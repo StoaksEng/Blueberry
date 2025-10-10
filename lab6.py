@@ -22,7 +22,7 @@ def randomStep(leds):
 
 try:
 	bug = Bug()
-	bug.start()
+	bug.start() 
 
 	while True:
 		bug.start()   # starts blinking LEDs
