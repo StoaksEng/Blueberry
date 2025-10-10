@@ -71,11 +71,11 @@ class Bug:
             self.running = True
             self._thread = threading.Thread(target=self._run)
             self._thread.start()
-            print("Bug started.")
+            print("Bug released.")
 
     def stop(self):
         if self.running:
-        	self.running = False
-            self._thread.join()       # wait for thread to finish
-            self.shifter.shiftByte(0)  # turn off all LEDs
-            print("Bug stopped and LEDs off.")
+			self.running = False
+        	self._thread.join()       # wait for thread to finish
+			self.shifter.shiftByte(0)  # turn off all LEDs
+			print("Bug squahsed.")
