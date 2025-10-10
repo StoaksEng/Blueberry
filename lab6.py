@@ -19,21 +19,60 @@ led = 0b00010000
 
 def randomStep(leds):
 
-	move = random.choice([-1, 1])
-	# Move left (if possible)
-	if move == -1 and leds < 0b10000000:
-		leds <<= 1
-	# Move right (if possible)
-	elif move == 1 and leds > 0b00000001:
-		leds >>= 1
-
-	return leds
 
 try:
+	bug = Bug()
+	bug.start()
+
 	while True:
-		led = randomStep(led)
-		shift.shiftByte(led)
-		time.sleep(0.05)
+		bug.start()   # starts blinking LEDs
+		time.sleep(10)
+		bug.stop()  
+		time.sleep(10)
+
 except Exception as e:
     print("Error:", e)
     GPIO.cleanup()
+
+class Bug:
+    def __init__(self, timeStep=0.1, x=3, isWrapOn=False):
+        # composition: Bug "has a" Shifter
+        self.shifter = Shifter(serialPin, clockPin, latchPin)
+        self.timeStep=timeStep
+        self.x=x
+        self.isWrapOn=isWrapOn
+
+    def _run(self):
+	    while self.running:
+	    	randomStep()
+	        time.sleep(self.timeStep)
+
+    def randomStep()
+		move = random.choice([-1, 1])
+		# Move left (if possible)
+		if move == -1:
+			if self.x > 0 or self.isWrapOn:
+				self.x -= 1
+
+		# Move right (if possible)
+		elif move == 1 
+			if self.x < 7 or self.isWrapOn:
+				self.x += 1
+
+		led = bin(2 ** x)
+		self.shifter.shiftByte(led)
+
+	def start(self):
+	    if not self.running:
+	        self.running = True
+	        self._thread = threading.Thread(target=self._run)
+	        self._thread.start()
+	        print("Bug started.")
+
+	def stop(self):
+	    """Stop changing LED position and turn off LEDs."""
+	    if self.running:
+	        self.running = False
+	        self._thread.join()      # wait for thread to finish
+	        self.shifter.shiftByte(0)  # turn off all LEDs
+	        print("Bug stopped and LEDs off.")
