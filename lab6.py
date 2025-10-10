@@ -21,7 +21,7 @@ def randomStep(leds):
 	try:
 		bug = Bug()
 		bug.start()
-		
+
 		while True:
 			bug.start()   # starts blinking LEDs
 			time.sleep(10)
@@ -40,12 +40,12 @@ class Bug:
         self.x=x
         self.isWrapOn=isWrapOn
 
-    def _run(self):
-	    while self.running:
+	def _run(self):
+    	while self.running:
 	    	randomStep()
-	        time.sleep(self.timeStep)
+	    	time.sleep(self.timeStep)
 
-    def randomStep()
+	def randomStep():
 		move = random.choice([-1, 1])
 		# Move left (if possible)
 		if move == -1:
