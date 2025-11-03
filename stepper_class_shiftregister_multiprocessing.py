@@ -64,15 +64,7 @@ class Stepper:
         self.s.shiftByte(Stepper.shifter_outputs)
         self.angle.value += dir/Stepper.steps_per_degree
         self.angle.value %= 360         # limit to [0,359.9+] range
-"""
-10000001
-+
-11110000
-10000000
-or
-00000011
-10000011
-"""
+
     # Move relative angle from current position:
     def __rotate(self, delta):
         self.lock.acquire()                 # wait until the lock is available
