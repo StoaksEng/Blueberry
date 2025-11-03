@@ -37,14 +37,14 @@ class Stepper:
     shifter_outputs = 0   # track shift register outputs for all motors
     seq = [0b0001,0b0011,0b0010,0b0110,0b0100,0b1100,0b1000,0b1001] # CCW sequence
     delay = 1200          # delay between motor steps [us]
-    steps_per_degree = 4096/360    # 4096 steps/rev * 1/360 rev/deg
+    steps_per_degree = 4096/360     # 4096 steps/rev * 1/360 rev/deg
 
     def __init__(self, shifter, lock):
-        self.s = shifter           # shift register
-        self.angle = 0             # current output shaft angle
-        self.step_state = 0        # track position in sequence
+        self.s = shifter            # shift register
+        self.angle = multiprocessing.Value('d', 0.0)  # current output shaft angle
+        self.step_state = 0         # track position in sequence
         self.shifter_bit_start = 4*Stepper.num_steppers  # starting bit position
-        self.lock = lock           # multiprocessing lock
+        self.lock = lock            # multiprocessing lock
 
         Stepper.num_steppers += 1   # increment the instance count
 
@@ -57,11 +57,22 @@ class Stepper:
     def __step(self, dir):
         self.step_state += dir    # increment/decrement the step
         self.step_state %= 8      # ensure result stays in [0,7]
-        Stepper.shifter_outputs |= 0b1111<<self.shifter_bit_start
-        Stepper.shifter_outputs &= Stepper.seq[self.step_state]<<self.shifter_bit_start
+        
+        # 4-bit coil pattern for this motor
+        mask   = 0b1111 << self.shifter_bit_start
+        pattern = Stepper.seq[self.step_state] << self.shifter_bit_start
+
+        # Clear existing bits only for this motor
+        Stepper.shifter_outputs &= ~mask
+        # Set this motor's new coil pattern
+        Stepper.shifter_outputs |= pattern
+
         self.s.shiftByte(Stepper.shifter_outputs)
-        self.angle += dir/Stepper.steps_per_degree
-        self.angle %= 360         # limit to [0,359.9+] range
+
+        # update shared angle
+        with self.angle.get_lock():
+            self.angle.value += dir / Stepper.steps_per_degree
+            self.angle.value %= 360
 
     # Move relative angle from current position:
     def __rotate(self, delta):
@@ -80,13 +91,22 @@ class Stepper:
         p.start()
 
     # Move to an absolute angle taking the shortest possible path:
-    def goAngle(self, angle):
-         pass
-         # COMPLETE THIS METHOD FOR LAB 8
+    def goAngle(self, tarAngle):
+        # read angle safely
+        with self.angle.get_lock():
+            curAngle = self.angle.value
+
+        # shortest path math: force into [-180, 180]
+        delta = ((tarAngle - curAngle + 540) % 360) - 180
+
+        p = multiprocessing.Process(target=self.__rotate, args=(delta,))
+        p.start()
+         
 
     # Set the motor zero point
     def zero(self):
-        self.angle = 0
+        with self.angle.get_lock():
+            self.angle.value = 0.0
 
 
 # Example use:
